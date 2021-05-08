@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     void Start() {
         string[] messages = {"welcome", "to", "this" , "scene"};
         StartCoroutine(PrintMessages(messages, .5f));
-            StartCoroutine(FollowPath());
+        StartCoroutine(FollowPath());
     }
 
 
@@ -25,9 +25,10 @@ public class Player : MonoBehaviour {
         
     }
 
-    IEnumerator FollowPath() {
-        foreach (Transform waypoint in path) {
-            yield return StartCoroutine (Move(waypoint.position, 8));
+    IEnumerator PrintMessages(string[] messages, float delay) {
+        foreach (string item in messages) {
+            print(item);
+            yield return new WaitForSeconds(delay);
         }
     }
 
@@ -38,10 +39,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    IEnumerator PrintMessages(string[] messages, float delay) {
-        foreach (string item in messages) {
-            print(item);
-            yield return new WaitForSeconds(delay);
+    IEnumerator FollowPath() {
+        foreach (Transform waypoint in path) {
+            yield return StartCoroutine (Move(waypoint.position, 8));
         }
     }
 }
